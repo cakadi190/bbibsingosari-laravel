@@ -36,6 +36,7 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->roles->implode('name', ', ') }}</td>
                             <td>
+                                @if($user->id !== auth()->id())
                                 <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('user.destroy', $user->id) }}">
                                     @csrf
                                 </form>
@@ -46,6 +47,12 @@
                                 <button type="button" data-toggle="modal" data-target="#deleteModal-{{ $user->id }}" class="btn btn-danger btn-sm">
                                     <i class="ti ti-trash"></i>
                                 </button>
+                                @else
+                                <span class="d-flex gap-2 text-info flex-nowrap align-items-center">
+                                    <i class="ti ti-info-circle"></i>
+                                    {{ __('This is you') }}
+                                </span>
+                                @endif
                             </td>
                         </tr>
                     @empty
