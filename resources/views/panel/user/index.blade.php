@@ -36,7 +36,16 @@
                             <td>{{ $user->email }}</td>
                             <td>{{ $user->roles->implode('name', ', ') }}</td>
                             <td>
-                                {{-- <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-sm">{{ __('Edit') }}</a> --}}
+                                <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('user.destroy', $user->id) }}">
+                                    @csrf
+                                </form>
+
+                                <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary btn-sm">
+                                    <i class="ti ti-eye"></i>
+                                </a>
+                                <button type="button" data-toggle="modal" data-target="#deleteModal-{{ $user->id }}" class="btn btn-danger btn-sm">
+                                    <i class="ti ti-trash"></i>
+                                </button>
                             </td>
                         </tr>
                     @empty

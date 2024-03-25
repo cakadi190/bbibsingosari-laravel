@@ -2,6 +2,8 @@
 
 namespace App\Core\App\Interfaces\BasicEloquent;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Get Data Interface Class
  *
@@ -16,5 +18,5 @@ interface DeleteDataInterface
      *
      * @return bool
      */
-    public function delete(): bool;
+    public function delete(Model $model): bool;
 }

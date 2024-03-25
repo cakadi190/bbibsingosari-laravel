@@ -2,6 +2,8 @@
 
 namespace App\Core\App\Interfaces\BasicEloquent;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Update Data Interface Class
  *
@@ -17,5 +19,5 @@ interface UpdateDataInterface
      * @param array $data
      * @return mixed
      */
-    public function update(array $data): mixed;
+    public function update(Model $model, array $data): mixed;
 }
