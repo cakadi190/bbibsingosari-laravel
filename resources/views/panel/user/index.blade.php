@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mb-3">
+    <div class="pb-4">
         <h1 class="h3 mb-2">{{ __('User') }}</h1>
 
         <nav aria-label="breadcrumb">
@@ -25,6 +25,7 @@
                     <tr>
                         <th>{{ __('Name') }}</th>
                         <th>{{ __('Email') }}</th>
+                        <th>{{ __('Phone') }}</th>
                         <th>{{ __('Role') }}</th>
                         <th>{{ __('Action') }}</th>
                     </tr>
@@ -34,17 +35,23 @@
                         <tr>
                             <td>{{ $user->name }}</td>
                             <td>{{ $user->email }}</td>
-                            <td>{{ $user->roles->implode('name', ', ') }}</td>
+                            <td>{{ $user->phone ?? '-' }}</td>
+                            <td>
+                                <span class="badge bg-{{ $user->getUserRole()->color() }}">{{ $user->getUserRole()->label() }}</span>
+                            </td>
                             <td>
                                 @if($user->id !== auth()->id())
                                 <form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('user.destroy', $user->id) }}">
                                     @csrf
                                 </form>
 
-                                <a href="{{ route('user.show', $user->id) }}" class="btn btn-primary btn-sm">
+                                <button data-bs-toggle="modal" data-bs-target="#show-modal-{{ $user->id }}" class="btn btn-primary">
                                     <i class="ti ti-eye"></i>
-                                </a>
-                                <button type="button" data-toggle="modal" data-target="#deleteModal-{{ $user->id }}" class="btn btn-danger btn-sm">
+                                </button>
+                                <button data-bs-toggle="modal" data-bs-target="#edit-modal-{{ $user->id }}" class="btn btn-success">
+                                    <i class="ti ti-pencil"></i>
+                                </button>
+                                <button type="button" data-toggle="modal" data-target="#deleteModal-{{ $user->id }}" class="btn btn-danger">
                                     <i class="ti ti-trash"></i>
                                 </button>
                                 @else
