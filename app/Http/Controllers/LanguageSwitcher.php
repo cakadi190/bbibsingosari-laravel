@@ -16,6 +16,6 @@ class LanguageSwitcher extends Controller
     public function __invoke(string $locale, Request $request): RedirectResponse
     {
         $request->session()->put('locale', $locale);
-        return redirect()->route('login');
+        return redirect()->back();
     }
 }
