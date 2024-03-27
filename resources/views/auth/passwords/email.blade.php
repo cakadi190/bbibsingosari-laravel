@@ -29,12 +29,12 @@
             @enderror
         </div>
 
-        <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary w-100 py-8 fs-4 rounded-2">
+        <div class="d-grid gap-3">
+            <button type="submit" class="btn btn-primary w-100 py-3 fw-bold fs-4 rounded-2">
                 {{ __('Send Password Reset Link') }}
             </button>
 
-            <a href="{{ route('login') }}" class="btn btn-link text-decoration-none w-100 py-8 fs-4 rounded-2">
+            <a href="{{ route('login') }}" class="btn btn-link text-decoration-none w-100 py-2 fs-4 rounded-2">
                 {{ __('Back To Login') }}
             </a>
         </div>
